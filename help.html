@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Помощь - ChessBOROV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="chesss.css">
+    <style>
+        .help-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .help-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .help-header h1 {
+            color: #82b440;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+        
+        .search-box {
+            background: #2c2c2c;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 15px;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .search-box button {
+            padding: 15px 30px;
+            background: #82b440;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .help-card {
+            background: #2c2c2c;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .help-card:hover {
+            transform: translateY(-5px);
+            background: #363636;
+        }
+        
+        .help-icon {
+            font-size: 40px;
+            color: #82b440;
+            margin-bottom: 15px;
+        }
+        
+        .help-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .help-desc {
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        .faq-section {
+            background: #2c2c2c;
+            border-radius: 10px;
+            padding: 30px;
+        }
+        
+        .faq-title {
+            color: #82b440;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #444;
+            margin-bottom: 15px;
+        }
+        
+        .faq-question {
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .faq-answer {
+            display: none;
+            padding: 0 0 15px 0;
+            color: #aaa;
+            line-height: 1.6;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .contact-section {
+            background: #2c2c2c;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .contact-section h3 {
+            color: #82b440;
+            margin-bottom: 20px;
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .contact-method {
+            text-align: center;
+        }
+        
+        .contact-icon {
+            font-size: 30px;
+            color: #82b440;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-text"><span class="green">Chess</span>BOROV</div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="chesss.html"><i class="fas fa-chess-board"></i> Играть</a></li>
+            <li><a href="learnm.html"><i class="fas fa-graduation-cap"></i> Учиться</a></li>
+            <li><a href="watch.html"><i class="fas fa-tv"></i> Смотреть</a></li>
+            <li><a href="com.html"><i class="fas fa-users"></i> Сообщество</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <button class="btn btn-login" onclick="window.location.href='login.html'">Войти</button>
+            <button class="btn btn-signup" onclick="window.location.href='register.html'">Регистрация</button>
+        </div>
+    </nav>
+
+    <div class="help-container">
+        <div class="help-header">
+            <h1>Помощь</h1>
+            <p>Чем мы можем вам помочь?</p>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" placeholder="Поиск по вопросам...">
+            <button><i class="fas fa-search"></i> Найти</button>
+        </div>
+        
+        <div class="help-grid">
+            <div class="help-card" onclick="scrollToSection('faq')">
+                <div class="help-icon"><i class="fas fa-question-circle"></i></div>
+                <div class="help-title">FAQ</div>
+                <div class="help-desc">Часто задаваемые вопросы</div>
+            </div>
+            
+            <div class="help-card" onclick="scrollToSection('game')">
+                <div class="help-icon"><i class="fas fa-chess"></i></div>
+                <div class="help-title">Как играть</div>
+                <div class="help-desc">Правила игры и управление</div>
+            </div>
+            
+            <div class="help-card" onclick="scrollToSection('account')">
+                <div class="help-icon"><i class="fas fa-user"></i></div>
+                <div class="help-title">Аккаунт</div>
+                <div class="help-desc">Регистрация и настройки</div>
+            </div>
+            
+            <div class="help-card" onclick="scrollToSection('tech')">
+                <div class="help-icon"><i class="fas fa-cog"></i></div>
+                <div class="help-title">Технические проблемы</div>
+                <div class="help-desc">Если что-то не работает</div>
+            </div>
+        </div>
+        
+        <div class="faq-section" id="faq">
+            <h2 class="faq-title">Часто задаваемые вопросы</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Как начать играть?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Просто нажмите кнопку "Играть" в меню. Вы можете играть без регистрации, но с регистрацией откроются дополнительные возможности.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Нужно ли платить?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Нет, ChessBOROV полностью бесплатен. Все функции доступны без оплаты.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Как зарегистрироваться?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Нажмите кнопку "Регистрация" в правом верхнем углу. Заполните форму - и вы зарегистрированы!
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Почему фигуры не двигаются?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Возможно, вы пытаетесь ходить не своей фигурой или это не ваш ход. Белые ходят первыми.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Как сделать рокировку?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Передвиньте короля на две клетки в сторону ладьи. Ладья переместится автоматически.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Что значит "шах" и "мат"?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Шах - атака на короля. Мат - король в шахе и нет ходов, чтобы его защитить. Мат означает конец игры.
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-section">
+            <h3>Не нашли ответ?</h3>
+            <p>Свяжитесь с нами:</p>
+            
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div>support@chessborov.</div>
+                </div>
+                
+                <div class="contact-method">
+                    <div class="contact-icon"><i class="fas fa-telegram"></i></div>
+                    <div>@chessborov_support</div>
+                </div>
+                
+                <div class="contact-method">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <div>none</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="about.html">О нас</a>
+            <a href="help.html">Помощь</a>
+
+        </div>
+        <div class="copyright">
+            © 2026 ChessBOROV. Все права не защищены
+        </div>
+    </footer>
+
+    <script>
+        function toggleFAQ(element) {
+            let item = element.parentElement;
+            item.classList.toggle('active');
+            let icon = element.querySelector('i');
+            if (item.classList.contains('active')) {
+                icon.className = 'fas fa-chevron-up';
+            } else {
+                icon.className = 'fas fa-chevron-down';
+            }
+        }
+        
+        function scrollToSection(section) {
+            let element = document.getElementById(section);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

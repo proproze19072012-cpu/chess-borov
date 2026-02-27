@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обучение - ChessClone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .learn-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .learn-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .learn-header h1 {
+            color: #82b440;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .learn-header p {
+            color: #aaa;
+            font-size: 18px;
+        }
+        
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .lesson-card {
+            background: #2c2c2c;
+            border-radius: 10px;
+            padding: 25px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            background: #363636;
+        }
+        
+        .lesson-icon {
+            font-size: 48px;
+            color: #82b440;
+            margin-bottom: 15px;
+        }
+        
+        .lesson-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .lesson-desc {
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .lesson-meta {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 13px;
+        }
+        
+        .video-section {
+            background: #2c2c2c;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .video-title {
+            color: #82b440;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .video-card {
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            padding-bottom: 56.25%;
+            background: #000;
+            cursor: pointer;
+        }
+        
+        .video-thumbnail img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(130, 180, 64, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .video-info {
+            padding: 15px;
+        }
+        
+        .video-info h4 {
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        
+        .video-info p {
+            color: #aaa;
+            font-size: 13px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 800px;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-text"><span class="green">Chess</span>Clone</div>
+        </div>
+        
+    </nav>
+
+    <div class="learn-container">
+        <div class="learn-header">
+            <h1>Обучение шахматам</h1>
+            <p>От новичка до мастера</p>
+        </div>
+        
+        <div class="lessons-grid">
+            <div class="lesson-card" onclick="window.location.href='#basic'">
+                <div class="lesson-icon">♙</div>
+                <div class="lesson-title">Основы шахмат</div>
+                <div class="lesson-desc">Как ходят фигуры, цель игры, основные правила</div>
+                <div class="lesson-meta">
+                    <span>10 уроков</span>
+                    <span>★ Начинающий</span>
+                </div>
+            </div>
+            
+            <div class="lesson-card" onclick="window.location.href='#openings'">
+                <div class="lesson-icon">♘</div>
+                <div class="lesson-title">Дебюты</div>
+                <div class="lesson-desc">Популярные начала партии, развитие фигур</div>
+                <div class="lesson-meta">
+                    <span>15 уроков</span>
+                    <span>★★ Средний</span>
+                </div>
+            </div>
+            
+            <div class="lesson-card" onclick="window.location.href='#middlegame'">
+                <div class="lesson-icon">♗</div>
+                <div class="lesson-title">Миттельшпиль</div>
+                <div class="lesson-desc">Тактика, комбинации, атака и защита</div>
+                <div class="lesson-meta">
+                    <span>20 уроков</span>
+                    <span>★★★ Продвинутый</span>
+                </div>
+            </div>
+            
+            <div class="lesson-card" onclick="window.location.href='#endgame'">
+                <div class="lesson-icon">♔</div>
+                <div class="lesson-title">Эндшпиль</div>
+                <div class="lesson-desc">Реализация преимущества, техника игры в окончаниях</div>
+                <div class="lesson-meta">
+                    <span>12 уроков</span>
+                    <span>★★★ Продвинутый</span>
+                </div>
+            </div>
+            
+            <div class="lesson-card" onclick="window.location.href='#tactics'">
+                <div class="lesson-icon">⚡</div>
+                <div class="lesson-title">Тактические приемы</div>
+                <div class="lesson-desc">Вилка, связка, открытое нападение, двойной удар</div>
+                <div class="lesson-meta">
+                    <span>25 задач</span>
+                    <span>★★ Средний</span>
+                </div>
+            </div>
+            
+            <div class="lesson-card" onclick="window.location.href='#strategy'">
+                <div class="lesson-icon">🎯</div>
+                <div class="lesson-title">Стратегия</div>
+                <div class="lesson-desc">Позиционная игра, пешечные структуры</div>
+                <div class="lesson-meta">
+                    <span>18 уроков</span>
+                    <span>★★★ Продвинутый</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="video-section" id="basic">
+            <h3 class="video-title">🎓 Базовые уроки</h3>
+            <div class="video-grid">
+                <div class="video-card" onclick="playVideo('dQeNKajQyYQ')">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/dQeNKajQyYQ/maxresdefault.jpg" alt="Как ходят фигуры">
+                        <div class="play-button"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="video-info">
+                        <h4>Как ходят шахматные фигуры</h4>
+                        <p>Полное руководство для начинающих</p>
+                    </div>
+                </div>
+                
+                <div class="video-card" onclick="playVideo('Hc9Eo2hGxHk')">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/Hc9Eo2hGxHk/maxresdefault.jpg" alt="Правила шахмат">
+                        <div class="play-button"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="video-info">
+                        <h4>Основные правила шахмат</h4>
+                        <p>Шах, мат, пат, рокировка</p>
+                    </div>
+                </div>
+                
+                <div class="video-card" onclick="playVideo('wDY-bC7Zptg')">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/wDY-bC7Zptg/maxresdefault.jpg" alt="Дебют">
+                        <div class="play-button"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="video-info">
+                        <h4>Лучшие дебюты для начинающих</h4>
+                        <p>Итальянская партия, защита Каро-Канн</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="video-section" id="openings">
+            <h3 class="video-title">📚 Популярные дебюты</h3>
+            <div class="video-grid">
+                <div class="video-card" onclick="playVideo('5KbTjqK8l7U')">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/5KbTjqK8l7U/maxresdefault.jpg" alt="Испанская партия">
+                        <div class="play-button"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="video-info">
+                        <h4>Испанская партия</h4>
+                        <p>Классический дебют за белых</p>
+                    </div>
+                </div>
+                
+                <div class="video-card" onclick="playVideo('6SXp0kYVZ1c')">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/6SXp0kYVZ1c/maxresdefault.jpg" alt="Сицилианская защита">
+                        <div class="play-button"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="video-info">
+                        <h4>Сицилианская защита</h4>
+                        <p>Острый дебют за черных</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для видео -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeVideo()">&times;</span>
+            <div class="video-wrapper">
+                <iframe id="youtubePlayer" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+   
+        <div class="copyright">© 2026 Chessborov</div>
+    </footer>
+
+    <script>
+        function playVideo(videoId) {
+            document.getElementById('videoModal').style.display = 'block';
+            document.getElementById('youtubePlayer').src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+        }
+        
+        function closeVideo() {
+            document.getElementById('videoModal').style.display = 'none';
+            document.getElementById('youtubePlayer').src = '';
+        }
+        
+        window.onclick = function(event) {
+            let modal = document.getElementById('videoModal');
+            if (event.target == modal) {
+                closeVideo();
+            }
+        }
+    </script>
+</body>
+</html>

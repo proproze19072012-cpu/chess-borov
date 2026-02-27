@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация - ChessClone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: #2c2c2c;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        
+        .auth-title {
+            color: #82b440;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .form-group label {
+            color: #ddd;
+            font-size: 14px;
+        }
+        
+        .form-group input {
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 16px;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #82b440;
+        }
+        
+        .auth-btn {
+            background: #82b440;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .auth-btn:hover {
+            background: #6d9a36;
+        }
+        
+        .auth-links {
+            margin-top: 20px;
+            text-align: center;
+            color: #aaa;
+        }
+        
+        .auth-links a {
+            color: #82b440;
+            text-decoration: none;
+        }
+        
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #ff4444;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .success-message {
+            color: #82b440;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .password-strength {
+            height: 5px;
+            margin-top: 5px;
+            border-radius: 3px;
+        }
+        
+        .strength-weak {
+            background: #ff4444;
+            width: 33%;
+        }
+        
+        .strength-medium {
+            background: #ffaa44;
+            width: 66%;
+        }
+        
+        .strength-strong {
+            background: #82b440;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="auth-container">
+        <h2 class="auth-title">Регистрация</h2>
+        
+        <form class="auth-form" id="registerForm" onsubmit="return false;">
+            <div class="form-group">
+                <label for="username">Имя пользователя</label>
+                <input type="text" id="username" placeholder="Введите имя" required>
+                <div class="error-message" id="usernameError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Введите email" required>
+                <div class="error-message" id="emailError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" placeholder="Введите пароль" required>
+                <div class="password-strength" id="passwordStrength"></div>
+                <div class="error-message" id="passwordError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Подтвердите пароль</label>
+                <input type="password" id="confirmPassword" placeholder="Повторите пароль" required>
+                <div class="error-message" id="confirmError"></div>
+            </div>
+            
+            <button type="submit" class="auth-btn" id="registerBtn">Зарегистрироваться</button>
+            
+            <div class="success-message" id="successMessage"></div>
+        </form>
+        
+        <div class="auth-links">
+            Уже есть аккаунт? <a href="login.html">Войти</a>
+        </div>
+    </div>
+
+   
+
+    <script src="reg.js"></script>
+</body>
+</html>

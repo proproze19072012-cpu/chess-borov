@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Смотреть - ChessClone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .watch-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .watch-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .watch-header h1 {
+            color: #82b440;
+            font-size: 36px;
+        }
+        
+        .video-filters {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: #2c2c2c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .filter-btn.active {
+            background: #82b440;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .video-item {
+            background: #2c2c2c;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-thumb {
+            position: relative;
+            padding-bottom: 56.25%;
+            background: #1a1a1a;
+        }
+        
+        .video-thumb img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        
+        .video-info {
+            padding: 15px;
+        }
+        
+        .video-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #aaa;
+            font-size: 13px;
+        }
+        
+        .video-stats {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 1000px;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-text"><span class="green">Chess</span>Borov</div>
+    
+    </nav>
+
+    <div class="watch-container">
+        <div class="watch-header">
+            <h1>Шахматное видео</h1>
+        </div>
+        
+        <div class="video-filters">
+            <button class="filter-btn active" onclick="filterVideos('all')">Все</button>
+            <button class="filter-btn" onclick="filterVideos('lessons')">Уроки</button>
+            <button class="filter-btn" onclick="filterVideos('tournaments')">Турниры</button>
+            <button class="filter-btn" onclick="filterVideos('analysis')">Анализ партий</button>
+        </div>
+        
+        <div class="video-grid" id="videoGrid">
+            <!-- Уроки -->
+            <div class="video-item" data-category="lessons" onclick="playVideo('dQeNKajQyYQ')">
+                <div class="video-thumb">
+                    <img src="https://img.youtube.com/vi/dQeNKajQyYQ/maxresdefault.jpg" alt="Урок">
+                    <span class="video-duration">15:30</span>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Как ходят шахматные фигуры</div>
+                    <div class="video-meta">
+                        <span>Уроки</span>
+                        <span class="video-stats">
+                            <span><i class="fas fa-eye"></i> 45K</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="video-item" data-category="lessons" onclick="playVideo('Hc9Eo2hGxHk')">
+                <div class="video-thumb">
+                    <img src="https://img.youtube.com/vi/Hc9Eo2hGxHk/maxresdefault.jpg" alt="Правила">
+                    <span class="video-duration">12:45</span>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Правила шахмат для начинающих</div>
+                    <div class="video-meta">
+                        <span>Уроки</span>
+                        <span class="video-stats"><i class="fas fa-eye"></i> 32K</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Турниры -->
+            <div class="video-item" data-category="tournaments" onclick="playVideo('4BwBkYh3P1c')">
+                <div class="video-thumb">
+                    <img src="https://img.youtube.com/vi/4BwBkYh3P1c/maxresdefault.jpg" alt="Чемпионат мира">
+                    <span class="video-duration">2:15:30</span>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Чемпионат мира по шахматам 2023</div>
+                    <div class="video-meta">
+                        <span>Турниры</span>
+                        <span class="video-stats"><i class="fas fa-eye"></i> 128K</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="video-item" data-category="tournaments" onclick="playVideo('eUlsWwBcF6k')">
+                <div class="video-thumb">
+                    <img src="https://img.youtube.com/vi/eUlsWwBcF6k/maxresdefault.jpg" alt="Турнир претендентов">
+                    <span class="video-duration">1:45:20</span>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Турнир претендентов 2024</div>
+                    <div class="video-meta">
+                        <span>Турниры</span>
+                        <span class="video-stats"><i class="fas fa-eye"></i> 89K</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Анализ партий -->
+            <div class="video-item" data-category="analysis" onclick="playVideo('6IegDENuxU4')">
+                <div class="video-thumb">
+                    <img src="https://img.youtube.com/vi/6IegDENuxU4/maxresdefault.jpg" alt="Анализ">
+                    <span class="video-duration">35:20</span>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Анализ партии: Карлсен - Непомнящий</div>
+                    <div class="video-meta">
+                        <span>Анализ</span>
+                        <span class="video-stats"><i class="fas fa-eye"></i> 56K</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="video-item" data-category="analysis" onclick="playVideo('PNqA1y_nw7U')">
+                <div class="video-thumb">
+                    <img src="https://img.youtube.com/vi/PNqA1y_nw7U/maxresdefault.jpg" alt="Разбор">
+                    <span class="video-duration">28:15</span>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Разбор легендарной партии</div>
+                    <div class="video-meta">
+                        <span>Анализ</span>
+                        <span class="video-stats"><i class="fas fa-eye"></i> 34K</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Еще уроки -->
+            <div class="video-item" data-category="lessons" onclick="playVideo('wDY-bC7Zptg')">
+                <div class="video-thumb">
+                    <img src="https://img.youtube.com/vi/wDY-bC7Zptg/maxresdefault.jpg" alt="Дебюты">
+                    <span class="video-duration">22:10</span>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Топ-5 дебютов для начинающих</div>
+                    <div class="video-meta">
+                        <span>Уроки</span>
+                        <span class="video-stats"><i class="fas fa-eye"></i> 41K</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="video-item" data-category="lessons" onclick="playVideo('5KbTjqK8l7U')">
+                <div class="video-thumb">
+                    <img src="https://img.youtube.com/vi/5KbTjqK8l7U/maxresdefault.jpg" alt="Тактика">
+                    <span class="video-duration">18:45</span>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Тактика: вилка и связка</div>
+                    <div class="video-meta">
+                        <span>Уроки</span>
+                        <span class="video-stats"><i class="fas fa-eye"></i> 27K</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Модальное окно -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeVideo()">&times;</span>
+            <div class="video-wrapper">
+                <iframe id="youtubePlayer" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+        <div class="copyright">© 2026 ChessClone</div>
+    </footer>
+
+    <script>
+        function playVideo(videoId) {
+            document.getElementById('videoModal').style.display = 'block';
+            document.getElementById('youtubePlayer').src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+        }
+        
+        function closeVideo() {
+            document.getElementById('videoModal').style.display = 'none';
+            document.getElementById('youtubePlayer').src = '';
+        }
+        
+        function filterVideos(category) {
+            let btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            let videos = document.querySelectorAll('.video-item');
+            videos.forEach(video => {
+                if (category === 'all' || video.dataset.category === category) {
+                    video.style.display = 'block';
+                } else {
+                    video.style.display = 'none';
+                }
+            });
+        }
+        
+        window.onclick = function(event) {
+            let modal = document.getElementById('videoModal');
+            if (event.target == modal) {
+                closeVideo();
+            }
+        }
+    </script>
+</body>
+</html>

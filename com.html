@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сообщество - ChessClone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .community-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .community-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .community-header h1 {
+            color: #82b440;
+            font-size: 36px;
+        }
+        
+        .forum-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .forum-card {
+            background: #2c2c2c;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .forum-icon {
+            font-size: 48px;
+            color: #82b440;
+            margin-bottom: 15px;
+        }
+        
+        .forum-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .forum-stats {
+            color: #aaa;
+            margin-top: 15px;
+        }
+        
+        .forum-topics {
+            background: #2c2c2c;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .forum-topics h3 {
+            color: #82b440;
+            margin-bottom: 20px;
+        }
+        
+        .topic-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #444;
+            cursor: pointer;
+        }
+        
+        .topic-item:hover {
+            background: #363636;
+        }
+        
+        .topic-title {
+            font-weight: bold;
+        }
+        
+        .topic-meta {
+            color: #aaa;
+            font-size: 13px;
+        }
+        
+        .new-topic {
+            background: #82b440;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    </nav>
+
+    <div class="community-container">
+        <div class="community-header">
+            <h1>Сообщество</h1>
+            <p>Общайтесь с шахматистами со всего мира</p>
+        </div>
+        
+        <div class="forum-sections">
+            <div class="forum-card">
+                <div class="forum-icon"><i class="fas fa-comments"></i></div>
+                <div class="forum-title">Общий форум</div>
+                <div>Обсуждение шахмат, вопросы и ответы</div>
+                <div class="forum-stats">📊 1,234 тем | 5,678 сообщений</div>
+            </div>
+            
+            <div class="forum-card">
+                <div class="forum-icon"><i class="fas fa-trophy"></i></div>
+                <div class="forum-title">Турниры</div>
+                <div>Анонсы и обсуждение соревнований</div>
+                <div class="forum-stats">📊 456 тем | 2,345 сообщений</div>
+            </div>
+            
+            <div class="forum-card">
+                <div class="forum-icon"><i class="fas fa-chess"></i></div>
+                <div class="forum-title">Анализ партий</div>
+                <div>Разбираем интересные партии вместе</div>
+                <div class="forum-stats">📊 789 тем | 3,456 сообщений</div>
+            </div>
+        </div>
+        
+        <div class="forum-topics">
+            <h3>Последние обсуждения</h3>
+            
+            <div class="topic-item">
+                <div>
+                    <div class="topic-title">Как улучшить тактику?</div>
+                    <div class="topic-meta">Автор: ChessMaster | 15 ответов</div>
+                </div>
+                <div class="topic-meta">2 часа назад</div>
+            </div>
+            
+            <div class="topic-item">
+                <div>
+                    <div class="topic-title">Разбор моей партии (прошу совета)</div>
+                    <div class="topic-meta">Автор: NewPlayer | 8 ответов</div>
+                </div>
+                <div class="topic-meta">5 часов назад</div>
+            </div>
+            
+            <div class="topic-item">
+                <div>
+                    <div class="topic-title">Лучшие книги по эндшпилю</div>
+                    <div class="topic-meta">Автор: Grandmaster | 23 ответа</div>
+                </div>
+                <div class="topic-meta">Вчера</div>
+            </div>
+            
+            <div class="topic-item">
+                <div>
+                    <div class="topic-title">Онлайн турнир в эти выходные</div>
+                    <div class="topic-meta">Автор: Organizer | 42 ответа</div>
+                </div>
+                <div class="topic-meta">Вчера</div>
+            </div>
+            
+            <button class="new-topic">Создать новую тему</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">О нас</a>
+            <a href="#">Помощь</a>
+            <a href="#">Контакты</a>
+        </div>
+        <div class="copyright">© 2024 ChessClone</div>
+    </footer>
+</body>
+</html>
